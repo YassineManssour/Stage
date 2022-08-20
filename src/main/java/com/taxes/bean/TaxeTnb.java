@@ -11,12 +11,12 @@ public class TaxeTnb {
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	@ManyToOne
-	private Redevable redevable;
+	public Redevable redevable;
 	@ManyToOne
 	private Local local;
 	private int annee;
 	private double montantBase;
-	private double surface;
+	
 	@ManyToOne
 	private TauxTaxeTnb tauxTaxeTnb;
 	public long getId() {
@@ -49,12 +49,15 @@ public class TaxeTnb {
 	public void setMontantBase(double montantBase) {
 		this.montantBase = montantBase;
 	}
-	public double getSurface() {
-		return surface;
+	
+	public TauxTaxeTnb getTauxTaxeTnb() {
+		return tauxTaxeTnb;
 	}
-	public void setSurface(int surface) {
-		this.surface = surface;
+	public void setTauxTaxeTnb(TauxTaxeTnb tauxTaxeTnb) {
+		this.tauxTaxeTnb = tauxTaxeTnb;
 	}
+	
+	
 	
 	
 	

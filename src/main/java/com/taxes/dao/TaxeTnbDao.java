@@ -14,12 +14,7 @@ public interface TaxeTnbDao extends JpaRepository<TaxeTnb,Long>{
 	List<TaxeTnb> findByRedevableCin(String cinRedevable);
 	TaxeTnb findByAnneeAndLocalReference(int annee, String reference); 
 	List<TaxeTnb> findByAnneeAndRedevableCin(int annee, String cin);
-	List<TaxeTnb> findByAnnee(int annee);
-	
-	int deleteByReference(String reference);
-	//Redevable findByAnneeAndRedevableCin(int annee, String cin);
-	//TauxTaxeTnb findByReferenceCategorieLocal(String reference);
-	
-	
+	List<TaxeTnb> findByAnnee(int annee);	
+	int deleteByLocalReference(String reference);
 	
 }

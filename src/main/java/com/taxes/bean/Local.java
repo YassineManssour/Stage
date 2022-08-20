@@ -12,6 +12,7 @@ public class Local {
 	private long id;
 	private String reference;
 	private String rue;
+	private double surface;
 	@ManyToOne
 	private Redevable redevable;
 	@ManyToOne
@@ -46,5 +47,12 @@ public class Local {
 	public void setCategorieTnb(CategorieTnb categorieTnb) {
 		this.categorieTnb = categorieTnb;
 	}
+	public double getSurface() {
+		return surface;
+	}
+	public void setSurface(double surface) {
+		this.surface = surface;
+	}
+	
 	
 }
