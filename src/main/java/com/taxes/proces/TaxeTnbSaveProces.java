@@ -3,14 +3,14 @@ package com.taxes.proces;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.taxes.bean.Local;
 import com.taxes.bean.Redevable;
 import com.taxes.bean.TauxTaxeTnb;
 import com.taxes.bean.TaxeTnb;
+import com.taxes.bean.Terrain;
 import com.taxes.dao.TaxeTnbDao;
-import com.taxes.service.LocalService;
 import com.taxes.service.RedevableService;
 import com.taxes.service.TauxTaxeTnbService;
+import com.taxes.service.TerrainService;
 
 @Service
 public class TaxeTnbSaveProces {
@@ -19,7 +19,9 @@ public class TaxeTnbSaveProces {
 	@Autowired
 	private RedevableService redevableService;
 	@Autowired
-	private LocalService localService;
+	private TerrainService terrainService;
+	//private LocalService localService;
+	
 	@Autowired
 	private TauxTaxeTnbService tauxTaxeTnbService;
 	
@@ -34,7 +36,7 @@ public class TaxeTnbSaveProces {
 
 	public void exec(TaxeTnb taxetnb) {
 		// TODO Auto-generated method stub
-		double montant = taxetnb.getLocal().getSurface()*taxetnb.getTauxTaxeTnb().getMontantMetreCarre();
+		double montant = taxetnb.getTerrain().getSurface()*taxetnb.getTauxTaxeTnb().getMontantMetreCarre();
 		taxetnb.setMontantBase(montant);
 		taxetnbdao.save(taxetnb);
 	}
@@ -43,9 +45,9 @@ public class TaxeTnbSaveProces {
 		// TODO Auto-generated method stub
 		if(taxetnb.getRedevable()==null) {
 			return -1;
-		}else if (taxetnb.getLocal()==null) {
+		}else if (taxetnb.getTerrain()==null) {
 			return -2;
-		}else if (taxetnb.getLocal().getCategorieTnb()==null) {
+		}else if (taxetnb.getTerrain().getCategorieTnb()==null) {
 		return -3;
 		}else if(taxetnb.getTauxTaxeTnb()==null){
 			return -4;
@@ -59,9 +61,9 @@ public class TaxeTnbSaveProces {
 		// TODO Auto-generated method stub
 		Redevable redev = redevableService.findByCin(taxetnb.getRedevable().getCin());
 		taxetnb.setRedevable(redev);
-		Local local = localService.findByReference(taxetnb.getLocal().getReference());
-		taxetnb.setLocal(local);
-		TauxTaxeTnb taux = tauxTaxeTnbService.findByCategorieTnbReference(taxetnb.getLocal().getCategorieTnb().getReference());
+		Terrain terrain = terrainService.findByReferenceTerrain(taxetnb.getTerrain().getReferenceTerrain());
+		taxetnb.setTerrain(terrain);
+		TauxTaxeTnb taux = tauxTaxeTnbService.findByCategorieTnbReference(taxetnb.getTerrain().getCategorieTnb().getReference());
 		taxetnb.setTauxTaxeTnb(taux);
 	}
 }

@@ -14,7 +14,7 @@ import com.taxes.bean.TaxeTnb;
 import com.taxes.proces.TaxeTnbSaveProces;
 import com.taxes.service.TaxeTnbService;
 @RestController
-@RequestMapping("API/taxetnb")
+@RequestMapping("api/taxetnb")
 public class TaxeTnbWs {
 
 	@Autowired
@@ -27,18 +27,32 @@ public class TaxeTnbWs {
 		taxeTnbSaveProces.exec(taxetnb);
 		return 1;
 	}
+	/*
+	 * public List<TaxeTnb> findByLocalReference(@PathVariable String reference) {
+	 * return taxeTnbService.findByLocalReference(reference); }
+	 */
 	@GetMapping("/reference/{reference}")
-	public List<TaxeTnb> findByLocalReference(@PathVariable String reference) {
-		return taxeTnbService.findByLocalReference(reference);
+	public List<TaxeTnb> findByTerrainReferenceTerrain(@PathVariable String reference) {
+		return taxeTnbService.findByTerrainReferenceTerrain(reference);
+	}
+	@GetMapping("/annee/{annee}/reference/{reference}")
+	public TaxeTnb findByAnneeAndTerrainReferenceTerrain(@PathVariable int annee, @PathVariable String reference) {
+		return taxeTnbService.findByAnneeAndTerrainReferenceTerrain(annee, reference);
+	}
+	@DeleteMapping("/reference/{reference}")
+	public int deleteByTerrainReferenceTerrain(@PathVariable String reference) {
+		return taxeTnbService.deleteByTerrainReferenceTerrain(reference);
 	}
 	@GetMapping("/cinRedevable/{cinRedevable}")
 	public List<TaxeTnb> findByRedevableCin(@PathVariable String cinRedevable) {
 		return taxeTnbService.findByRedevableCin(cinRedevable);
 	}
-	@GetMapping("/annee/{annee}/reference/{reference}")
-	public TaxeTnb findByAnneeAndLocalReference(@PathVariable int annee, @PathVariable String reference) {
-		return taxeTnbService.findByAnneeAndLocalReference(annee, reference);
-	}
+	
+	/*
+	 * public TaxeTnb findByAnneeAndLocalReference(@PathVariable int
+	 * annee, @PathVariable String reference) { return
+	 * taxeTnbService.findByAnneeAndLocalReference(annee, reference); }
+	 */
 	@GetMapping("/annee/{annee}/cin/{cin}")
 	public List<TaxeTnb> findByAnneeAndRedevableCin(@PathVariable int annee, @PathVariable String cin) {
 		return taxeTnbService.findByAnneeAndRedevableCin(annee, cin);
@@ -48,15 +62,12 @@ public class TaxeTnbWs {
 		return taxeTnbService.findByAnnee(annee);
 	}
 	
-	@DeleteMapping("/reference/{reference}")
-	public int deleteByLocalReference(@PathVariable String reference) {
-		return taxeTnbService.deleteByLocalReference(reference);
-	}
 	
-	@GetMapping("/id/{id}")
-	public TaxeTnb getReferenceById(@PathVariable Long id) {
-		return taxeTnbService.getReferenceById(id);
-	}
+	/*
+	 * public int deleteByLocalReference(@PathVariable String reference) { return
+	 * taxeTnbService.deleteByLocalReference(reference); }
+	 */
+	
 	@GetMapping("/")
 	public  List<TaxeTnb> findAll() {
 		return taxeTnbService.findAll();

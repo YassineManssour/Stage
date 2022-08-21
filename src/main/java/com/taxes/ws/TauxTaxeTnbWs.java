@@ -15,7 +15,7 @@ import com.taxes.bean.TauxTaxeTnb;
 import com.taxes.service.TauxTaxeTnbService;
 
 @RestController
-@RequestMapping("/Api/tauxtaxetnb")
+@RequestMapping("/api/tauxtaxetnb")
 public class TauxTaxeTnbWs {
 	@Autowired
 	private TauxTaxeTnbService tauxTaxeTnbService;
@@ -32,7 +32,7 @@ public class TauxTaxeTnbWs {
 	public List<TauxTaxeTnb> findAll() {
 		return tauxTaxeTnbService.findAll();
 	}
-	@PostMapping("/tauxtaxetnb/{tauxtaxetnb}")
+	@PostMapping("/")
 	public int save(@RequestBody TauxTaxeTnb tauxtaxetnb) {
 		return tauxTaxeTnbService.save(tauxtaxetnb);
 	}

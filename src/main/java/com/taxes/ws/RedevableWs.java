@@ -15,7 +15,7 @@ import com.taxes.bean.Redevable;
 import com.taxes.service.RedevableService;
 
 @RestController
-@RequestMapping("/Api/Redevable")
+@RequestMapping("/api/Redevable")
 public class RedevableWs {
 	@Autowired
 	public RedevableService redevableService;

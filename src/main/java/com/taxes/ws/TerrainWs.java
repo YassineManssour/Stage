@@ -12,32 +12,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.taxes.bean.Local;
-import com.taxes.service.LocalService;
+import com.taxes.bean.Terrain;
+import com.taxes.service.TerrainService;
 
 @RestController
-@RequestMapping("api/Local")
-public class LocalWs {
+@RequestMapping("/api/terrain")
+public class TerrainWs {
 	@Autowired
-	private LocalService localService;
-
+	private TerrainService terrainService;
 	@GetMapping("/reference/{reference}")
-	public Local findByReference(@PathVariable String reference) {
-		return localService.findByReference(reference);
+	public Terrain findByReferenceTerrain(@PathVariable String reference) {
+		return terrainService.findByReferenceTerrain(reference);
 	}
 	@DeleteMapping("/reference/{reference}")
-	public int deleteByReference(@PathVariable String reference) {
-		return localService.deleteByReference(reference);
+	public int deleteByReferenceTerrain(@PathVariable String reference) {
+		return terrainService.deleteByReferenceTerrain(reference);
 	}
 	@GetMapping("/cin/{cin}")
 	public List<Local> findByRedevableCin(@PathVariable String cin) {
-		return localService.findByRedevableCin(cin);
-	}
-	@GetMapping("/")
-	public List<Local> findAll() {
-		return localService.findAll();
+		return terrainService.findByRedevableCin(cin);
 	}
 	@PostMapping("/")
-	public int save(@RequestBody Local local) {
-		return localService.save(local);
+	public int save(@RequestBody Terrain terrain) {
+		return terrainService.save(terrain);
 	}
+	@GetMapping("/")
+	public List<Terrain> findAll() {
+		return terrainService.findAll();
+	}
+	
 }

@@ -14,6 +14,8 @@ public class TaxeTnb {
 	public Redevable redevable;
 	@ManyToOne
 	private Local local;
+	@ManyToOne
+	private Terrain terrain;
 	private int annee;
 	private double montantBase;
 	
@@ -22,6 +24,15 @@ public class TaxeTnb {
 	public long getId() {
 		return id;
 	}
+	
+	public Terrain getTerrain() {
+		return terrain;
+	}
+
+	public void setTerrain(Terrain terrain) {
+		this.terrain = terrain;
+	}
+
 	public void setId(long id) {
 		this.id = id;
 	}

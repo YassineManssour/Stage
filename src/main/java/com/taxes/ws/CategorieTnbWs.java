@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,7 +15,7 @@ import com.taxes.bean.CategorieTnb;
 import com.taxes.service.CategorieTnbService;
 
 @RestController
-@RequestMapping("/categorietnb")
+@RequestMapping("/api/categorietnb")
 public class CategorieTnbWs {
 	@Autowired
 	private CategorieTnbService categorieTnbService;
@@ -30,7 +31,7 @@ public class CategorieTnbWs {
 	public List<CategorieTnb> findAll() {
 		return categorieTnbService.findAll();
 	}
-	@GetMapping("/")
+	@PostMapping("/")
 	public int save(@RequestBody CategorieTnb categorietnb) {
 		return categorieTnbService.save(categorietnb);
 	}
