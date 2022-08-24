@@ -22,24 +22,13 @@ public class CategorieTnbService {
 		return categorieTnbDao.deleteByReference(reference);
 	}
 
-	public Optional<CategorieTnb> findById(Long id) {
-		return categorieTnbDao.findById(id);
-	}
-
-	public void delete(CategorieTnb entity) {
-		categorieTnbDao.delete(entity);
-	}
-
-	public CategorieTnb getReferenceById(Long id) {
-		return categorieTnbDao.getReferenceById(id);
-	}
 
 	public List<CategorieTnb> findAll() {
 		return categorieTnbDao.findAll();
 	}
 	
 	public int save(CategorieTnb categorietnb) {
-		if(findByReference(categorietnb.getReference())==null) {
+		if(findByReference(categorietnb.getReference())!=null) {
 			return -1;
 		}else {
 			categorieTnbDao.save(categorietnb);

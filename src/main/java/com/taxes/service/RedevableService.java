@@ -22,20 +22,13 @@ public class RedevableService {
 		return redevableDao.deleteByCin(cin);
 	}
 
-	public Optional<Redevable> findById(Long id) {
-		return redevableDao.findById(id);
-	}
-	
-	public Redevable getReferenceById(Long id) {
-		return redevableDao.getReferenceById(id);
-	}
 
 	public List<Redevable> findAll() {
 		return redevableDao.findAll();
 	}
 	
 	public int save(Redevable redevable) {
-		if(findByCin(redevable.getCin())==null) {
+		if(findByCin(redevable.getCin())!=null) {
 			return -1;
 		}else {
 			redevableDao.save(redevable);

@@ -12,11 +12,11 @@ public interface TaxeTnbDao extends JpaRepository<TaxeTnb,Long>{
 	
 	//List<TaxeTnb> findByLocalReference(String reference);
 	List<TaxeTnb> findByTerrainReferenceTerrain(String reference);
-	List<TaxeTnb> findByRedevableCin(String cinRedevable);
+	List<TaxeTnb> findByTerrainRedevableCin(String cinRedevable);
 	//TaxeTnb findByAnneeAndLocalReference(int annee, String reference); 
 	TaxeTnb findByAnneeAndTerrainReferenceTerrain(int annee, String reference); 
 
-	List<TaxeTnb> findByAnneeAndRedevableCin(int annee, String cin);
+	List<TaxeTnb> findByAnneeAndTerrainRedevableCin(int annee, String cin);
 	List<TaxeTnb> findByAnnee(int annee);	
 	//int deleteByLocalReference(String reference);
 	int deleteByTerrainReferenceTerrain(String reference);

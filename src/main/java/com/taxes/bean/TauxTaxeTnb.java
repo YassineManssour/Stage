@@ -1,10 +1,6 @@
 package com.taxes.bean;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 public class TauxTaxeTnb {
@@ -12,7 +8,7 @@ public class TauxTaxeTnb {
 	private long id;
 	
 	private double montantMetreCarre;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	private CategorieTnb categorieTnb;
 	public long getId() {
 		return id;

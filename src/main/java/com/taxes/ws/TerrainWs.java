@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.taxes.bean.Local;
 import com.taxes.bean.Terrain;
 import com.taxes.service.TerrainService;
 
@@ -29,7 +28,7 @@ public class TerrainWs {
 		return terrainService.deleteByReferenceTerrain(reference);
 	}
 	@GetMapping("/cin/{cin}")
-	public List<Local> findByRedevableCin(@PathVariable String cin) {
+	public List<Terrain> findByRedevableCin(@PathVariable String cin) {
 		return terrainService.findByRedevableCin(cin);
 	}
 	@PostMapping("/")

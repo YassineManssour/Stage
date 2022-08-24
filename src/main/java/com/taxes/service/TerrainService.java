@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.taxes.bean.Local;
 import com.taxes.bean.Terrain;
 import com.taxes.dao.TerrainDao;
 
@@ -23,12 +22,12 @@ public class TerrainService {
 		return terrainDao.deleteByReferenceTerrain(reference);
 	}
 
-	public List<Local> findByRedevableCin(String cin) {
+	public List<Terrain> findByRedevableCin(String cin) {
 		return terrainDao.findByRedevableCin(cin);
 	}
 
 	public int save(Terrain terrain) {
-		if(findByReferenceTerrain(terrain.getReferenceTerrain())==null) {
+		if(findByReferenceTerrain(terrain.getReferenceTerrain())!=null) {
 			return -1;
 		}else {
 			terrainDao.save(terrain);

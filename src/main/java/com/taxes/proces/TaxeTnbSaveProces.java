@@ -43,7 +43,7 @@ public class TaxeTnbSaveProces {
 
 	public int validateSave(TaxeTnb taxetnb) {
 		// TODO Auto-generated method stub
-		if(taxetnb.getRedevable()==null) {
+		if(taxetnb.getTerrain().getRedevavble()==null) {
 			return -1;
 		}else if (taxetnb.getTerrain()==null) {
 			return -2;
@@ -59,8 +59,8 @@ public class TaxeTnbSaveProces {
 
 	public void initSave(TaxeTnb taxetnb) {
 		// TODO Auto-generated method stub
-		Redevable redev = redevableService.findByCin(taxetnb.getRedevable().getCin());
-		taxetnb.setRedevable(redev);
+		Redevable redev = redevableService.findByCin(taxetnb.getTerrain().getRedevavble().getCin());
+		taxetnb.getTerrain().setRedevable(redev);
 		Terrain terrain = terrainService.findByReferenceTerrain(taxetnb.getTerrain().getReferenceTerrain());
 		taxetnb.setTerrain(terrain);
 		TauxTaxeTnb taux = tauxTaxeTnbService.findByCategorieTnbReference(taxetnb.getTerrain().getCategorieTnb().getReference());

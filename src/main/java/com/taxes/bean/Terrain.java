@@ -1,10 +1,6 @@
 package com.taxes.bean;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 public class Terrain {
@@ -14,9 +10,9 @@ public class Terrain {
 	private String rue;
 	private String adresse;
 	private double surface;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	private CategorieTnb categorieTnb;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Redevable redevable;
 	public long getId() {
 		return id;

@@ -25,20 +25,12 @@ public class TauxTaxeTnbService {
 		return tauxTaxeTnbDao.deleteByCategorieTnbReference(reference);
 	}
 
-	public Optional<TauxTaxeTnb> findById(Long id) {
-		return tauxTaxeTnbDao.findById(id);
-	}
-	
-	public TauxTaxeTnb getReferenceById(Long id) {
-		return tauxTaxeTnbDao.getReferenceById(id);
-	}
-
 	public List<TauxTaxeTnb> findAll() {
 		return tauxTaxeTnbDao.findAll();
 	}
 	
 	public int save(TauxTaxeTnb tauxtaxetnb) {
-		if(findByCategorieTnbReference(tauxtaxetnb.getCategorieTnb().getReference())==null) {
+		if(findByCategorieTnbReference(tauxtaxetnb.getCategorieTnb().getReference())!=null) {
 			return -1;
 		}else {
 		tauxTaxeTnbDao.save(tauxtaxetnb);

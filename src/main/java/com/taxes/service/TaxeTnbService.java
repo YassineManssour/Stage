@@ -35,8 +35,8 @@ public class TaxeTnbService {
 		return taxetnbdao.deleteByTerrainReferenceTerrain(reference);
 	}
 
-	public List<TaxeTnb> findByRedevableCin(String cinRedevable) {
-		return taxetnbdao.findByRedevableCin(cinRedevable);
+	public List<TaxeTnb> findByTerrainRedevableCin(String cinRedevable) {
+		return taxetnbdao.findByTerrainRedevableCin(cinRedevable);
 	}
 
 	/*
@@ -44,28 +44,14 @@ public class TaxeTnbService {
 	 * return taxetnbdao.findByAnneeAndLocalReference(annee, reference); }
 	 */
 
-	public List<TaxeTnb> findByAnneeAndRedevableCin(int annee, String cin) {
-		return taxetnbdao.findByAnneeAndRedevableCin(annee, cin);
+	public List<TaxeTnb> findByAnneeAndTerrainRedevableCin(int annee, String cin) {
+		return taxetnbdao.findByAnneeAndTerrainRedevableCin(annee, cin);
 	}
 
 	public List<TaxeTnb> findByAnnee(int annee) {
 		return taxetnbdao.findByAnnee(annee);
 	}
 
-	public List<TaxeTnb> findAllById(Iterable<Long> ids) {
-		return taxetnbdao.findAllById(ids);
-	}
-
-	public Optional<TaxeTnb> findById(Long id) {
-		return taxetnbdao.findById(id);
-	}
-	/*
-	 * public int deleteByLocalReference(String reference) { return
-	 * taxetnbdao.deleteByLocalReference(reference); }
-	 */
-	public TaxeTnb getReferenceById(Long id) {
-		return taxetnbdao.getReferenceById(id);
-	}
 
 	public List<TaxeTnb> findAll() {
 		return taxetnbdao.findAll();
