@@ -3,6 +3,8 @@ package com.taxes.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.taxes.vo.StatistiqueTaxeTnb;
+import com.taxes.vo.StatistiqueTnbMinMax;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,6 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.taxes.bean.TaxeTnb;
 import com.taxes.dao.TaxeTnbDao;
 import com.taxes.proces.TaxeTnbSaveProces;
+
+import javax.persistence.EntityManager;
+
 @Service
 public class TaxeTnbService {
 	@Autowired
@@ -22,6 +27,9 @@ public class TaxeTnbService {
 	 * taxetnbdao.findByLocalReference(reference); }
 	 */
 
+	@Autowired
+	private EntityManager entityManager;
+
 	public List<TaxeTnb> findByTerrainReferenceTerrain(String reference) {
 		return taxetnbdao.findByTerrainReferenceTerrain(reference);
 	}
@@ -33,6 +41,21 @@ public class TaxeTnbService {
 	@Transactional
 	public int deleteByTerrainReferenceTerrain(String reference) {
 		return taxetnbdao.deleteByTerrainReferenceTerrain(reference);
+	}
+
+
+	public List<StatistiqueTaxeTnb> calcStat(StatistiqueTnbMinMax statistiqueTnbMinMax ){
+		String query="SELECT NEW com.taxes.vo.StatistiqueTaxeTnb(t.annee,SUM(t.montantBase)) FROM TaxeTnb t WHERE 1=1 ";
+		if(statistiqueTnbMinMax.getAnneMin()!=null)
+			query+= " AND t.annee >= " +statistiqueTnbMinMax.getAnneMin();
+		if (statistiqueTnbMinMax.getAnneMax()!=null)
+			query+=" AND t.annee <= " + statistiqueTnbMinMax.getAnneMax();
+
+
+			query+=" GROUP BY t.annee";
+		System.out.println("query = " + query);
+
+		return entityManager.createQuery(query).getResultList();
 	}
 
 	public List<TaxeTnb> findByTerrainRedevableCin(String cinRedevable) {

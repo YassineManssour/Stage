@@ -1,6 +1,9 @@
 package com.taxes.ws;
 
 import java.util.List;
+
+import com.taxes.vo.StatistiqueTaxeTnb;
+import com.taxes.vo.StatistiqueTnbMinMax;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -61,8 +64,12 @@ public class TaxeTnbWs {
 	public List<TaxeTnb> findByAnnee(@PathVariable int annee) {
 		return taxeTnbService.findByAnnee(annee);
 	}
-	
-	
+
+	@PostMapping("/statistique")
+	public List<StatistiqueTaxeTnb> calcStat(@RequestBody StatistiqueTnbMinMax statistiqueTnbMinMax) {
+		return taxeTnbService.calcStat(statistiqueTnbMinMax);
+	}
+
 	/*
 	 * public int deleteByLocalReference(@PathVariable String reference) { return
 	 * taxeTnbService.deleteByLocalReference(reference); }
